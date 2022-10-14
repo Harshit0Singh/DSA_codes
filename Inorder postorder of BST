@@ -1,0 +1,108 @@
+#include <iostream>
+using namespace std;
+#define COUNT 10;
+struct node
+{
+    int data;
+    node* left;
+    node* right;
+};
+int k=0;
+int nu=0;int jk=0,lm=0;
+node* root=NULL;
+void print2DUtil(node* root, int space)//copied from GEEKS FOR GEEKS
+{
+    // Base case
+    if (root == NULL)
+        return;
+ 
+    // Increase distance between levels
+    space += 10;
+ 
+    // Process right child first
+    print2DUtil(root->right, space);
+ 
+    // Print current node after space
+    // count
+    cout << endl;
+    int i;
+    for(i = 10;i<space;i++){
+        cout << " ";}
+    cout << root->data << "\n";
+ 
+    // Process left child
+    print2DUtil(root->left, space);
+}
+void insert(int a,node* &h)
+{
+    if(h==NULL)
+    {
+        if(nu==0)
+        {
+            cout<<"first";
+            node* temp=new node();
+            root=temp;
+            root->data=a;
+            root->right=NULL;
+            root->left=NULL;
+            nu++;
+        }
+        else
+        {
+        cout<<"  second";
+        node* temp=new node();
+        temp->data=a;
+        temp->right=NULL;
+        temp->left=NULL;
+        h=temp;
+        //display(root);
+        }
+        cout<<endl<<" ";
+        //cout<<k;k++;
+       
+    }
+    else if(a>h->data)
+    {
+         cout<<"big "<<jk;jk++;
+        insert(a,h->right);
+    }
+    else if(a<h->data)
+    {
+         cout<<"smol "<<lm;lm++;
+        insert(a,h->left);
+    }
+}
+string d="";
+void inorder(node* a)
+{
+    if(a==NULL)
+    return;
+    inorder(a->left);
+    cout<<a->data<<",";
+    inorder(a->right);
+}
+void postorder(node* a)
+{
+    if(a==NULL)
+    return;
+    postorder(a->left);
+    postorder(a->right);
+    cout<<a->data<<",";
+}
+int main()
+{
+    insert(5,root);
+    insert(3,root);
+    insert(4,root);
+    insert(7,root);
+    insert(2,root);
+    insert(1,root);
+    insert(9,root);
+    insert(6,root);
+    print2DUtil(root,0);
+    inorder(root);
+    cout<<endl;
+    postorder(root);
+    cout<<d;
+    return 0;
+}
